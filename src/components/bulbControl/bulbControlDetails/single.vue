@@ -145,20 +145,19 @@
         singleEventSourceClose,
         eventSourceClose
         } from "../../restfulapi/eventSourceApi"
-
     let intToColor = (value)=> {
         let int = parseInt(value);
         switch(int){
             case 0: 
                 return defaultColor;
             case 1:
-                return "yellow";
+                return "#f0ad4e";
             case 2: 
-                return "green";
+                return "#5cb85c";
             case 3: 
-                return "red";
+                return "#d9534f";
             case 4: 
-                return "blue";
+                return "#1382c6";
             default:
                 return "";
         }
@@ -441,16 +440,16 @@
             font-size: 32px;
         }
         .blub-red{
-            color: red;
+            color: #d9534f;
         }
          .blub-green{
-            color: green;
+            color: #5cb85c;
         }
          .blub-blue{
-            color: blue;
+            color: #1382c6;
         }
          .blub-yellow{
-            color: yellow;
+            color: #f0ad4e;
         }
 
     }
@@ -458,6 +457,10 @@
         position: relative;
         top: -80px;
         left: 20px;
+    }
+
+    .el-radio__inner{
+        border-color:#8896a5 !important;
     }
 
 </style>

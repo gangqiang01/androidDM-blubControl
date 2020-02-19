@@ -163,8 +163,8 @@
                 Batch Control
             </div>
             <el-form :model="toperationForm" :rules="rules" ref="toperationForm">
-                <el-form-item label="Task name:" label-width="230px" prop="taskname">
-                    <el-input v-model.trim="toperationForm.taskname" autocomplete="off" class="w-350" placeholder="Please input task name"></el-input>
+                <el-form-item label="Task name:" label-width="210px" prop="taskname">
+                    <el-input v-model.trim="toperationForm.taskname" autocomplete="off" class="w-300" placeholder="Please input task name"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -183,7 +183,7 @@
     </div> 
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import "../../../assets/css/colors"; 
     .info-box {
         display: block;
@@ -237,16 +237,16 @@
             font-size: 32px;
         }
         .blub-red{
-            color: red;
+            color: #d9534f;
         }
          .blub-green{
-            color: green;
+            color: #5cb85c;
         }
          .blub-blue{
-            color: blue;
+            color: #1382c6;
         }
          .blub-yellow{
-            color: yellow;
+            color: #f0ad4e;
         }
 
     }
@@ -285,6 +285,9 @@
 
         }
     }
+    .el-radio__inner{
+        border-color:#8896a5 !important;
+    }
 
 </style>
 
@@ -301,19 +304,19 @@
     import operationHistory from "./operationHistory";
     import {setLocal, getLocal, getSession, checkSession, setSession} from "../../../assets/js/storage"
     let defaultColor = "#aaa";
-     let intToColor = (value)=> {
+    let intToColor = (value)=> {
         let int = parseInt(value);
         switch(int){
             case 0: 
                 return defaultColor;
             case 1:
-                return "yellow";
+                return "#f0ad4e";
             case 2: 
-                return "green";
+                return "#5cb85c";
             case 3: 
-                return "red";
+                return "#d9534f";
             case 4: 
-                return "blue";
+                return "#1382c6";
             default:
                 return "";
         }
