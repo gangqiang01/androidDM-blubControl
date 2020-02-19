@@ -108,14 +108,14 @@
                 <el-radio :label="colorData.yellow" class="m-r-10">
                     <i class="fa fa-lightbulb-o blub-yellow" aria-hidden="true"></i>
                 </el-radio>
+                <el-radio :label="colorData.green" class="m-r-10">
+                    <i class="fa fa-lightbulb-o blub-green" aria-hidden="true"></i>
+                </el-radio>
                 <el-radio :label="colorData.red" class="m-r-10">
                     <i class="fa fa-lightbulb-o blub-red" aria-hidden="true"></i>
                 </el-radio>
                 <el-radio :label="colorData.blue" class="m-r-10">
                     <i class="fa fa-lightbulb-o blub-blue" aria-hidden="true"></i>
-                </el-radio>
-                <el-radio :label="colorData.green" class="m-r-10">
-                    <i class="fa fa-lightbulb-o blub-green" aria-hidden="true"></i>
                 </el-radio>
                 
             </el-radio-group>
@@ -146,11 +146,11 @@
             case 1:
                 return "yellow";
             case 2: 
-                return "red";
-            case 3: 
-                return "blue";
-            case 4: 
                 return "green";
+            case 3: 
+                return "red";
+            case 4: 
+                return "blue";
             default:
                 return "";
         }
@@ -187,6 +187,7 @@
 
                 //bulb default color
                 bulbColor: 1,
+                beforeBulbColor: 1,
                 // colorData: [
                 //     {name: "yellow", value: 1}, 
                 //     {name: "red", value: 2}, 
@@ -194,9 +195,9 @@
                 //     {name: "green", value: 4}],
                 colorData: {
                     yellow: 1,
-                    red: 2,
-                    blue: 3,
-                    green: 4
+                    green: 2,
+                    red: 3,
+                    blue: 4, 
                 }
 
             }
@@ -257,6 +258,7 @@
                                         let led4 = bulbStatusObj.data.led4_status;
                                         let led5 = bulbStatusObj.data.led5_status;
                                         this.bulbColor = bulbStatusObj.data.led_color;
+                                        this.beforeBulbColor = this.bulbColor;
                                         this.bulbIconColor0 = led0 == "on"? intToColor(this.bulbColor): defaultColor;
                                         this.bulbIconColor1 = led1 == "on"? intToColor(this.bulbColor): defaultColor
                                         this.bulbIconColor2 = led2 == "on"? intToColor(this.bulbColor): defaultColor
@@ -295,14 +297,15 @@
                         if(res.status === "CHANGED"){
                             switch(funcId){
                                 case this.funcIds.setLedColor:
+                                    this.beforeBulbColor = this.bulbColor;
                                     this.getDeviceVideoStatus(this.funcIds.getLedStatus);
                                 break;
                                 default:
                                     console.error("funcId not support")
-                                
                             }
                         }else{
                             _g.handleError(res); 
+                            this.bulbColor = this.beforeBulbColor;
                         }
                         
                     })

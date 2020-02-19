@@ -356,6 +356,7 @@
                 bulbIconColor5: defaultColor,
                 //bulb default color
                 bulbColor: 1,
+                beforeBulbColor: 1,
                 toperationForm:{
                     taskname: '',
                 },
@@ -427,6 +428,7 @@
                                         let led4 = bulbStatusObj.data.led4_status;
                                         let led5 = bulbStatusObj.data.led5_status;
                                         this.bulbColor = bulbStatusObj.data.led_color;
+                                        this.beforeBulbColor = this.bulbColor;
                                         this.bulbIconColor0 = led0 == "on"? intToColor(this.bulbColor): defaultColor;
                                         this.bulbIconColor1 = led1 == "on"? intToColor(this.bulbColor): defaultColor
                                         this.bulbIconColor2 = led2 == "on"? intToColor(this.bulbColor): defaultColor
@@ -437,7 +439,6 @@
                                     case this.funcIds.getLedColor:
                                         this.bulbColor = bulbStatusObj.data.led_color;
                                         break;
-                                    
                                     default:
                                         console.error("funcId not support");
                                 }
@@ -489,7 +490,8 @@
 
             initBulbInfo(){
                 this.toperationForm.taskname = "";
-                this.funcId = ""
+                this.funcId = "",
+                this.bulbColor = this.beforeBulbColor;
             },
 
             refreshStatus(){
@@ -563,6 +565,7 @@
 
             isControlFinished(){
                 this.initData();
+                this.getDeviceVideoStatus(this.funcIds.getLedStatus);
             }
             
         },
