@@ -265,7 +265,7 @@ export default (function () {
     })
 
     //solution App FuncId
-    Vue.filter("SolutionAppStatusFunction", (target) => { 
+    Vue.filter("solutionAppStatusFunction", (target) => { 
         let value = _g.trim(target);
         if(value){
             switch (value){

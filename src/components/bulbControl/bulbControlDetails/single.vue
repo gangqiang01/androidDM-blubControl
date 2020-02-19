@@ -103,7 +103,7 @@
             <i class="fa fa-hand-o-up m-r-10" aria-hidden="true"></i>
             Set Bulb Color
         </p>
-        <div class="blub-color">
+        <div class="blub-color m-b-20" v-loading="changeLoading">
             <el-radio-group v-model="bulbColor" @change = "setBulbColor">
                 <el-radio :label="colorData.yellow" class="m-r-10">
                     <i class="fa fa-lightbulb-o blub-yellow" aria-hidden="true"></i>
@@ -137,7 +137,15 @@
 
     import handleResponse from '@/components/restfulapi/handleResponse'
     import {getSolutionAppValueApi, setSolutionAppValueApi} from '@/components/restfulapi/solutionAppApi';
-    
+    import { 
+        eventSourceConn,
+        handleMsg,
+        singleEventSourceConn,
+        singleHandleMsg,
+        singleEventSourceClose,
+        eventSourceClose
+        } from "../../restfulapi/eventSourceApi"
+
     let intToColor = (value)=> {
         let int = parseInt(value);
         switch(int){
@@ -198,7 +206,9 @@
                     green: 2,
                     red: 3,
                     blue: 4, 
-                }
+                },
+
+                changeLoading: false
 
             }
         },
@@ -291,14 +301,17 @@
                 }
 
                 setSolutionAppValueApi(this.selectedAgentId, this.setTarget, data).then((obj) => {
-
-                    handleResponse(obj, (res) => {
+                    this.changeLoading = false;
+                    handleResponse(obj, (res) => {  
 
                         if(res.status === "CHANGED"){
                             switch(funcId){
                                 case this.funcIds.setLedColor:
-                                    this.beforeBulbColor = this.bulbColor;
-                                    this.getDeviceVideoStatus(this.funcIds.getLedStatus);
+                                    this.$swal("","success","success").then(() => {
+                                        this.beforeBulbColor = this.bulbColor;
+                                        this.getDeviceVideoStatus(this.funcIds.getLedStatus);                          
+                                    })
+                                    
                                 break;
                                 default:
                                     console.error("funcId not support")
@@ -326,9 +339,31 @@
                     funcid: this.funcIds.setLedColor,
                     param: this.bulbColor
                 }
+                this.changeLoading = true;
                 this.setSolutionAppValue(data, this.funcIds.setLedColor);
             },
 
+            sgEventSourceConn(selectedAgentId){
+                singleEventSourceConn(selectedAgentId).then((isConnect) => {
+                    if(isConnect){
+                        singleHandleMsg("AUTOREPORT", (type, data) => {
+                            if(data){
+                                let msgObj = JSON.parse(data);
+                                if(msgObj.ep == selectedAgentId && msgObj.appname == this.pkgname){
+                                    this.getDeviceVideoStatus(this.funcIds.getLedStatus);
+                                }
+                                
+                            }
+                            
+                        }, false);
+                    }
+                    
+                });
+                   
+            },
+            closeEventSourceConn(){
+                singleEventSourceClose();
+            }
         },
 
         watch: {
@@ -341,9 +376,13 @@
                 if(this.isSingleMode) {
                     this.initData();
                     this.getDeviceVideoStatus(this.funcIds.getLedStatus);
+                    this.closeEventSourceConn();
+                    if(val){
+                        
+                        this.sgEventSourceConn(val);
+                    }
                 }
             },
-           
         },
     }
 </script>

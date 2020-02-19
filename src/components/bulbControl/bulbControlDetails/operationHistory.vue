@@ -44,7 +44,7 @@
             min-width="120"
             >
                 <template slot-scope="scope">
-                    {{scope.row.funcId|SolutionAppStatusFunction}}
+                    {{scope.row.funcId|solutionAppStatusFunction}}
                 </template>
             </el-table-column>
             
@@ -93,7 +93,7 @@
                             <el-button 
                                 size="mini" 
                                 type="danger"
-                                @click="deleteHistory(scope.row.aeid)"
+                                @click="deleteHistory(scope.row.sasid)"
                                 :disabled="scope.row.status==0"
                                 >
                                     Delete
@@ -187,6 +187,7 @@ export default {
             clearLoading: false,
             batchDeleteSolutionAppStatusHistory: batchDeleteSolutionAppStatusHistoryApi,
             intervalTime: 3000,
+            setTarget: "/40007/0/27601",
 
             listLoading: false,
             isInterval: false,
@@ -230,11 +231,11 @@ export default {
             
         },
 
-        deleteHistory(aeid){
+        deleteHistory(sasid){
             _g.swalInfoDo("Delete").then((result) => {
                 if(result){
                     this.listLoading = true;
-                    deleteSolutionAppStatusHistoryApi(aeid).then((data) => {
+                    deleteSolutionAppStatusHistoryApi(sasid).then((data) => {
                         this.listLoading = false;
                         handleResponse(data, (res) => {
                             if(res.status === "CHANGED"){
@@ -321,9 +322,7 @@ export default {
 
         reSetSolutionAppValue(powerData){
             this.dialogTasknameVisible = false;
-            this.whitelistLoading = true;
             reSetSolutionAppValue(this.setTarget, powerData).then((data) => {
-                this.whitelistLoading = false;
                 handleResponse(data, (res) => {
                     if(res.status == "CHANGED"){
                         this.activeName = "operationStatusHistory";

@@ -148,7 +148,7 @@ let batchDeleteSolutionAppStatusHistoryApi = function(sasids){
     }
 
     return new Promise((resolve, reject) => {
-        apiPost("/api/solutionAppStatus/batchdDelete", data, config).then((data) => {
+        apiPost("/api/solutionAppStatus/batchdDelete", data).then((data) => {
             resolve(data)
         }).catch((err) => {
             resolve(err.response)

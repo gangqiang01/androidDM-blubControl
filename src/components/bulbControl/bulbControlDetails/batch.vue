@@ -115,19 +115,19 @@
                     <i class="fa fa-hand-o-up m-r-10" aria-hidden="true"></i>
                     Set Bulb Color
                 </p>
-                <div class="blub-color">
+                <div class="blub-color m-b-20">
                     <el-radio-group v-model="bulbColor" @change = "setBulbColor">
                         <el-radio :label="colorData.yellow" class="m-r-10">
                             <i class="fa fa-lightbulb-o blub-yellow" aria-hidden="true"></i>
+                        </el-radio>
+                        <el-radio :label="colorData.green" class="m-r-10">
+                            <i class="fa fa-lightbulb-o blub-green" aria-hidden="true"></i>
                         </el-radio>
                         <el-radio :label="colorData.red" class="m-r-10">
                             <i class="fa fa-lightbulb-o blub-red" aria-hidden="true"></i>
                         </el-radio>
                         <el-radio :label="colorData.blue" class="m-r-10">
                             <i class="fa fa-lightbulb-o blub-blue" aria-hidden="true"></i>
-                        </el-radio>
-                        <el-radio :label="colorData.green" class="m-r-10">
-                            <i class="fa fa-lightbulb-o blub-green" aria-hidden="true"></i>
                         </el-radio>
                     </el-radio-group>
                 </div>
@@ -301,7 +301,7 @@
     import operationHistory from "./operationHistory";
     import {setLocal, getLocal, getSession, checkSession, setSession} from "../../../assets/js/storage"
     let defaultColor = "#aaa";
-    let intToColor = (value)=> {
+     let intToColor = (value)=> {
         let int = parseInt(value);
         switch(int){
             case 0: 
@@ -309,14 +309,15 @@
             case 1:
                 return "yellow";
             case 2: 
-                return "red";
-            case 3: 
-                return "blue";
-            case 4: 
                 return "green";
+            case 3: 
+                return "red";
+            case 4: 
+                return "blue";
             default:
                 return "";
         }
+
     };
     export default{
         name: 'batchBulbControl',
@@ -368,9 +369,9 @@
                 // colorData: [{name: "yellow"}, {name: "red"}, {name: "blue"}, {name: "green"}],
                 colorData: {
                     yellow: 1,
-                    red: 2,
-                    blue: 3,
-                    green: 4
+                    green: 2,
+                    red: 3,
+                    blue: 4, 
                 },
 
                 isShowOverview: false,
@@ -582,7 +583,6 @@
                 if(!this.isSingleMode&& val){
                     this.initData();
                     this.getDeviceVideoStatus(this.funcIds.getLedStatus);
-
                 }
             }
         },
