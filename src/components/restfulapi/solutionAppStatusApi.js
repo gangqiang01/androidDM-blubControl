@@ -1,13 +1,5 @@
 import {apiGet, apiPut, apiDelete, apiPost} from '../../assets/js/baseApi'
 
-/**
- * @api {get} /api/solutionAppStatus/status get solution app status
- * @apiVersion 0.1.0
- * @apiName getSolutionAppStatusApi
- * @apiGroup solutionAppStatus
- * @apiDescription get value of solution app status 
- * @apiSuccess {Object[]}  list of solution app status .
- */
 let getSolutionAppStatusApi = function(){
     return new Promise((resolve, reject) => {
         apiGet("/api/solutionAppStatus/status").then((data) => {
@@ -19,13 +11,13 @@ let getSolutionAppStatusApi = function(){
 }
 
 /**
- * @api {get} /api/solutionAppStatus/byType get solution app status by type
+ * @api {get} /api/solutionAppStatus/byType 获得设备的操作历史
  * @apiVersion 0.1.0
- * @apiName getSolutionAppStatusByTypeApi
- * @apiGroup solutionAppStatus
- * @apiDescription get your solution app status by type
- * @apiParam {String} type solution app package name
- * @apiSuccess {Object[]} list of solution app status .
+ * @apiName 获得设备的操作历史
+ * @apiGroup 操作历史
+ * @apiDescription 获得设备的操作历史
+ * @apiParam {String} type 设备中解决方案APP的包名
+ * @apiSuccess {Object[]} data 操作历史的列表 .
  */
 let getSolutionAppStatusByTypeApi = function(type){
     return new Promise((resolve, reject) => {
@@ -41,14 +33,14 @@ let getSolutionAppStatusByTypeApi = function(type){
 }
 
 /**
- * @api {get} /api/solutionAppStatus/byAgentId get solution app status of a device
+ * @api {get} /api/solutionAppStatus/byAgentId 获得指定设备的操作历史
  * @apiVersion 0.1.0
- * @apiName getSolutionAppStatusByTypeAndDevIdApi
- * @apiGroup solutionAppStatus
- * @apiDescription get value of solution app status of a device
- * @apiParam {String} endpoint endpoint id of device
- * @apiParam {String} type solution app package name
- * @apiSuccess {Object[]}  list of solution app status .
+ * @apiName 获得指定设备的操作历史
+ * @apiGroup 操作历史
+ * @apiDescription get 获得指定设备的操作历史
+ * @apiParam {String} endpoint 设备的ID
+ * @apiParam {String} type 设备中解决方案APP的包名
+ * @apiSuccess {Object[]} data 操作历史的列表 .
  */
 let getSolutionAppStatusByTypeAndDevIdApi = function(endpoint, type){
     return new Promise((resolve, reject) => {
@@ -65,14 +57,14 @@ let getSolutionAppStatusByTypeAndDevIdApi = function(endpoint, type){
 }
 
 /**
- * @api {get} /api/solutionAppStatus/byGroupname get solution app status in a device group
+ * @api {get} /api/solutionAppStatus/byGroupname 获得设备组中所有设备的操作历史
  * @apiVersion 0.1.0
- * @apiName getSolutionAppStatusByTypeAndGroupApi
- * @apiGroup solutionAppStatus
- * @apiDescription get your solution app status 
- * @apiParam {String} groupname device group name
- * @apiParam {String} type solution app package name
- * @apiSuccess {Object[]} list of solution app status 
+ * @apiName 获得设备组中所有设备的操作历史
+ * @apiGroup 操作历史
+ * @apiDescription 获得设备组中所有设备的操作历史
+ * @apiParam {String} groupname 设备组名称
+ * @apiParam {String} type 设备中解决方案APP的包名
+ * @apiSuccess {Object[]} data 操作历史的列表 
  */
 let getSolutionAppStatusByTypeAndGroupApi = function(groupname, type){
     return new Promise((resolve, reject) => {
@@ -89,17 +81,17 @@ let getSolutionAppStatusByTypeAndGroupApi = function(groupname, type){
 }
 
 /**
- * @api {get} /api/solutionAppStatus/byPageAndStatusIngroup get solution app by page and status in a device group
+ * @api {get} /api/solutionAppStatus/byPageAndStatusIngroup 获得设备组中所有设备指定状态的操作历史
  * @apiVersion 0.1.0
- * @apiName getSolutionAppStatusByPageAndStatusInGroupApi
- * @apiGroup solutionAppStatus
- * @apiDescription get your solution app status 
- * @apiParam {String} type solution app package name
- * @apiParam {String} groupname device group name
- * @apiParam {Number} currentpage current page
- * @apiParam {Number} limit Maximum number of bars displayed on one page 
- * @apiParam {String} status type: solution app status result, running:0, fail:1 success:2,example:[0,1]
- * @apiSuccess {Object[]}  list of solution app status 
+ * @apiName 获得设备组中所有设备指定状态的操作历史
+ * @apiGroup 操作历史
+ * @apiDescription 获得设备组中所有设备指定状态的操作历史
+ * @apiParam {String} type 设备中解决方案APP的包名
+ * @apiParam {String} groupname 设备组名称
+ * @apiParam {Number} currentpage 当前页
+ * @apiParam {Number} limit 一页显示的最大条数
+ * @apiParam {String} status type: 操作历史的状态（running:0, fail:1 success:2）,example:[0,1]
+ * @apiSuccess {Object[]} data 操作历史的列表 
  */
 let getSolutionAppStatusByPageAndStatusInGroupApi = function(groupname, type, currentpage, limit, status){
     return new Promise((resolve, reject) => {
@@ -119,16 +111,16 @@ let getSolutionAppStatusByPageAndStatusInGroupApi = function(groupname, type, cu
 }
 
 /**
- * @api {get} /api/solutionAppStatus/byPageInGroup get solution app by page in a device group
+ * @api {get} /api/solutionAppStatus/byPageInGroup 获得设备组中所有设备的操作历史
  * @apiVersion 0.1.0
- * @apiName getSolutionAppStatusByPageInGroupApi
- * @apiGroup solutionAppStatus
- * @apiDescription get your solution app status 
- * @apiParam {String} type solution app package name
- * @apiParam {String} groupname device group name
- * @apiParam {Number} currentpage current page
- * @apiParam {Number} limit Maximum number of bars displayed on one page 
- * @apiSuccess {Object[]}  list of solution app status 
+ * @apiName 获得设备组中所有设备的操作历史
+ * @apiGroup 操作历史
+ * @apiDescription 获得设备组中所有设备的操作历史
+ * @apiParam {String} type 设备中解决方案APP的包名
+ * @apiParam {String} groupname 设备组名称
+ * @apiParam {Number} currentpage 当前页
+ * @apiParam {Number} limit 一页显示的最大条数
+ * @apiSuccess {Object[]} data 操作历史的列表 
  */
 let getSolutionAppStatusByPageInGroupApi = function(groupname, type, currentpage, limit){
     return new Promise((resolve, reject) => {
@@ -147,12 +139,12 @@ let getSolutionAppStatusByPageInGroupApi = function(groupname, type, currentpage
 }
 
 /**
- * @api {delete} /api/solutionAppStatus/:sasid delete solution app status by sasid
+ * @api {delete} /api/solutionAppStatus/:sasid 删除指定的操作历史
  * @apiVersion 0.1.0
- * @apiName deleteSolutionAppStatusHistoryApi
- * @apiGroup solutionAppStatus
- * @apiDescription delete solution app status by sasid
- * @apiParam {Number} sasid sasid of solution app status
+ * @apiName 删除指定的操作历史
+ * @apiGroup 操作历史
+ * @apiDescription 删除指定的操作历史
+ * @apiParam {Number} sasid 操作历史的ID
  * @apiSuccess {String}  status  return CHANGED.
  * @apiSuccessExample {json} Success-Response:
                 { status: "CHANGED"}
@@ -168,11 +160,11 @@ let deleteSolutionAppStatusHistoryApi = function(sasid){
 }
 
 /**
- * @api {delete} /api/solutionAppStatus delete all solution app status
+ * @api {delete} /api/solutionAppStatus 删除所有操作历史
  * @apiVersion 0.1.0
- * @apiName deleteSolutionAppStatusHistoryAllApi
- * @apiGroup solutionAppStatus
- * @apiDescription delete all solution app status
+ * @apiName 删除所有操作历史
+ * @apiGroup 操作历史
+ * @apiDescription 删除所有操作历史
  * @apiSuccess {String}  status  return CHANGED.
  * @apiSuccessExample {json} Success-Response:
                 { status: "CHANGED"}
@@ -188,12 +180,12 @@ let deleteSolutionAppStatusHistoryAllApi = function(){
 }
 
 /**
- * @api {delete} /api/solutionAppStatus/byType/:type delete solution app status by type
+ * @api {delete} /api/solutionAppStatus/byType/:type 删除所有操作历史
  * @apiVersion 0.1.0
- * @apiName deleteSolutionAppStatusHistoryAllByTypeApi
- * @apiGroup solutionAppStatus
- * @apiDescription delete solution app status by type
- * @apiParam {String} type solution app package name
+ * @apiName 删除所有操作历史
+ * @apiGroup 操作历史
+ * @apiDescription 删除所有操作历史
+ * @apiParam {String} type 设备中解决方案APP的包名
  * @apiSuccess {String}  status  return CHANGED.
  * @apiSuccessExample {json} Success-Response:
                 { status: "CHANGED"}
@@ -209,13 +201,13 @@ let deleteSolutionAppStatusHistoryAllByTypeApi = function(type){
 }
 
 /**
- * @api {post} /api/solutionAppStatus/deleteByDevId delete solution app status by device id
+ * @api {post} /api/solutionAppStatus/deleteByDevId 删除指定设备的操作历史
  * @apiVersion 0.1.0
- * @apiName deleteSolutionAppStatusHistoryAllByDevIDAndTypeApi
- * @apiGroup solutionAppStatus
- * @apiDescription delete solution app status by device id
- * @apiParam {String} endpoint endpoint id of device
- * @apiParam {String} type solution app package name
+ * @apiName 删除指定设备的操作历史
+ * @apiGroup 操作历史
+ * @apiDescription 删除指定设备的操作历史
+ * @apiParam {String} endpoint 设备的ID
+ * @apiParam {String} type 设备中解决方案APP的包名
  * @apiSuccess {String}  status  return CHANGED.
  * @apiSuccessExample {json} Success-Response:
                 { status: "CHANGED"}
@@ -235,13 +227,13 @@ let deleteSolutionAppStatusHistoryAllByDevIDAndTypeApi = function(endpoint, type
 }
 
 /**
- * @api {post} /api/solutionAppStatus/deleteByGroup delete solution app status by device group
+ * @api {post} /api/solutionAppStatus/deleteByGroup 删除设备组中所有设备的操作历史
  * @apiVersion 0.1.0
- * @apiName deleteSolutionAppStatusHistoryAllByGroupAndTypeApi
- * @apiGroup solutionAppStatus
- * @apiDescription delete solution app status by device group
- * @apiParam {String} groupname device group name
- * @apiParam {String} type solution app package name
+ * @apiName 删除设备组中所有设备的操作历史
+ * @apiGroup 操作历史
+ * @apiDescription 删除设备组中所有设备的操作历史
+ * @apiParam {String} groupname 设备组名称
+ * @apiParam {String} type 设备中解决方案APP的包名
  * @apiSuccess {String}  status  return CHANGED.
  * @apiSuccessExample {json} Success-Response:
                 { status: "CHANGED"}
@@ -261,11 +253,11 @@ let deleteSolutionAppStatusHistoryAllByGroupAndTypeApi = function(groupname, typ
 }
 
 /**
- * @api {post} /api/solutionAppStatus/batchdDelete batch delete solution app status by sasids
+ * @api {post} /api/solutionAppStatus/batchdDelete 批量删除操作历史
  * @apiVersion 0.1.0
- * @apiName batchDeleteSolutionAppStatusHistoryApi
- * @apiGroup solutionAppStatus
- * @apiDescription  batch delete solution app status by sasids
+ * @apiName 批量删除操作历史
+ * @apiGroup 操作历史
+ * @apiDescription  批量删除操作历史
  * @apiParam {String} sasids  JSON type: sasids 
  * @apiSuccess {String}  status  return CHANGED.
  * @apiSuccessExample {json} Success-Response:
@@ -287,16 +279,16 @@ let batchDeleteSolutionAppStatusHistoryApi = function(sasids){
 }
 
 /**
- * @api {get} /api/solutionAppStatus/overview get solution app status overview
+ * @api {get} /api/solutionAppStatus/overview 获得指定任务的操作历史的结果
  * @apiVersion 0.1.0
- * @apiName getSolutionAppStatusOverviewApi
- * @apiGroup solutionAppStatus
- * @apiDescription get your solution app status overview 
- * @apiParam {String} taskname solution app package name
- * @apiParam {String} type solution app package name
- * @apiSuccess {Number}   running  running count of solution app status.
- * @apiSuccess {Number}   fail  fail count of solution app status.
- * @apiSuccess {Number}   success  success count of solution app status.
+ * @apiName 获得指定任务的操作历史的结果
+ * @apiGroup 操作历史
+ * @apiDescription 获得指定任务的操作历史的结果
+ * @apiParam {String} taskname 设备中解决方案APP的包名
+ * @apiParam {String} type 设备中解决方案APP的包名
+ * @apiSuccess {Number}   running  指定任务中正在执行的操作的个数.
+ * @apiSuccess {Number}   fail  指定任务中失败的操作的个数.
+ * @apiSuccess {Number}   success  指定任务中成功的操作的个数.
  */
 let getSolutionAppStatusOverviewApi = function(taskname, type){
     let data={

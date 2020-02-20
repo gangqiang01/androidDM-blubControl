@@ -1,6 +1,15 @@
 import { getBackendServerUrlApi } from "../restfulapi/serverConfigApi"
 
 let eventSource = null, singleEventSource = null;
+
+/**
+ * @api {get} /event 连接eventSource
+ * @apiVersion 0.1.0
+ * @apiName 连接eventSource
+ * @apiGroup eventSource
+ * @apiDescription 获的所有设备上传的数据
+ * @apiSuccess {json} data 设备上传的数据.
+ */
 let eventSourceConn = function(){
     return new Promise((resolve, reject) => {
         getBackendServerUrlApi().then((serverUrl) => {
@@ -40,7 +49,15 @@ let handleMsg = function(type, cb, mode){
     }
     eventSource.addEventListener(type, dcb, mode);
 }
-
+/**
+ * @api {get} /event 连接eventSource
+ * @apiVersion 0.1.0
+ * @apiName 连接eventSource
+ * @apiGroup eventSource
+ * @apiParam {String} ep endpoint id of device
+ * @apiDescription 获的指定设备上传的数据
+ * @apiSuccess {json} data 设备上传的数据.
+ */
 let singleEventSourceConn = function(agentId){
     return new Promise((resolve, reject) => {
         getBackendServerUrlApi().then((serverUrl) => {

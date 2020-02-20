@@ -1,12 +1,12 @@
 import {apiGet, apiPut, apiDelete, apiPost} from "../../assets/js/baseApi";
 import {deviceInfo} from "../../assets/js/lwm2mMap"
 /**
- * @api {get} /api/devicemgr Get all device
+ * @api {get} /api/devicemgr 获得所有设备
  * @apiVersion 0.1.0
- * @apiName getDevices
- * @apiGroup device
- * @apiDescription Get all devices
- * @apiSuccess {Object[]} data list of device.
+ * @apiName 获得设备
+ * @apiGroup 设备管理
+ * @apiDescription 获得所有设备
+ * @apiSuccess {Object[]} data 设备列表.
  */
     let getDeviceApi = function(gname) {
         let url, obj = undefined;
@@ -51,13 +51,13 @@ import {deviceInfo} from "../../assets/js/lwm2mMap"
         })
     }
 /**
- * @api {get} /api/devicemgr/getonlinedevicebygroup Get online devices in group
+ * @api {get} /api/devicemgr/getonlinedevicebygroup 获得设备组中的在线设备
  * @apiVersion 0.1.0
- * @apiName getOnlineDevicesByGroupname
- * @apiGroup device
- * @apiDescription Get online devices by group name
- * @apiParam {String} gname group name
- * @apiSuccess {Object[]} data list of device.
+ * @apiName 获得在线设备
+ * @apiGroup 设备管理
+ * @apiDescription 获得设备组中的在线设备
+ * @apiParam {String} gname 设备组名称
+ * @apiSuccess {Object[]} data 设备列表.
  */
     let getOnlineDeviceByGroupApi = function(gname){
         let data = {

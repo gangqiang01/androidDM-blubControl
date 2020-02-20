@@ -1,14 +1,14 @@
 import {apiGet, apiPut, apiDelete, apiPost} from '../../assets/js/baseApi'
 /**
- * @api {get} /api/solutionApp/${endpoint}/40007/0/27600 get solution app value
+ * @api {get} /api/solutionApp/${endpoint}/40007/0/27600 获得设备的信息
  * @apiVersion 0.1.0
- * @apiName getSolutionAppValue
- * @apiGroup solutionApp
- * @apiDescription get value of solution app
- * @apiParam {String} endpoint endpoint id of device
- * @apiParam {String} funcid defined by solution app
- * @apiParam {String} appname solution app package name
- * @apiParam {String} param data to send to solution app
+ * @apiName 获得设备的信息
+ * @apiGroup 操作设备
+ * @apiDescription 获得设备的信息
+ * @apiParam {String} endpoint 设备的ID
+ * @apiParam {String} funcid 设备中解决方案app中制定的方法ID
+ * @apiParam {String} appname 设备中解决方案APP的包名
+ * @apiParam {String} param 发送给设备中解决方案APP的数据
  * @apiSuccess {String}  status  return CONTENT.
  * @apiSuccessExample {json} Success-Response:
                    { status: "CONTENT",content: "" }
@@ -25,14 +25,14 @@ let getSolutionAppValueApi = function(endpoint, sensorId, param){
     })
 }
 /**
- * @api {put} /api/solutionApp/${endpoint}/40007/0/27601 set solution app value
+ * @api {put} /api/solutionApp/${endpoint}/40007/0/27601 设置设备
  * @apiVersion 0.1.0
- * @apiName setSolutionAppValue
- * @apiGroup solutionApp
- * @apiDescription set value of solution app
- * @apiParam {String} endpoint endpoint id of device
+ * @apiName 设置设备
+ * @apiGroup 操作设备
+ * @apiDescription 设置设备
+ * @apiParam {String} endpoint 设备的ID
  * @apiParam {String} id resource id of lwm2m value example 5
- * @apiParam {String} value data to send to solution app,format:{
+ * @apiParam {String} value 发送给设备中解决方案APP的数据,format:{
                     appname: this.pkgname,
                     funcid: this.funcIds.setLedColor,
                     param: this.bulbColor
@@ -58,16 +58,16 @@ let setSolutionAppValueApi = function(endpoint, sensorId, val=""){
     })
 }
 /**
- * @api {post} /api/solutionApp/redeploy/40007/0/27601 reset solution app value
+ * @api {post} /api/solutionApp/redeploy/40007/0/27601 重新设置设备
  * @apiVersion 0.1.0
- * @apiName reSetSolutionAppValue
- * @apiGroup solutionApp
- * @apiDescription get value of solution app
- * @apiParam {String} funcid defined by solution app
- * @apiParam {String} taskname the name of reset 
- * @apiParam {String} endpoint endpoint id of device
- * @apiParam {String} appname solution app package name
- * @apiParam {String} param data to send to solution app
+ * @apiName 重新设置设备
+ * @apiGroup 操作设备
+ * @apiDescription 重新设置设备
+ * @apiParam {String} funcid 设备中解决方案app中制定的方法ID
+ * @apiParam {String} taskname 任务名称 
+ * @apiParam {String} endpoint 设备的ID
+ * @apiParam {String} appname 设备中解决方案APP的包名
+ * @apiParam {String} param 发送给设备中解决方案APP的数据
  * @apiSuccess {String}  status  return CHANGED.
  * @apiSuccessExample {json} Success-Response:
                 { status: "CHANGED"}
@@ -84,16 +84,16 @@ let reSetSolutionAppValue = function(sensorId, dpData){
     })
 }
 /**
- * @api {post} /api/solutionApp/batchdeploy/40007/0/27601 Read batch set solution app value
+ * @api {post} /api/solutionApp/batchdeploy/40007/0/27601 批量设置设备
  * @apiVersion 0.1.0
- * @apiName batchSetSolutionAppValue
- * @apiGroup solutionApp
- * @apiDescription get value of solution app
- * @apiParam {String} taskname the name of batch set solution app value 
- * @apiParam {String} endpoint endpoint id of device
- * @apiParam {String} funcid defined by solution app
- * @apiParam {String} appname solution app package name
- * @apiParam {String} value data to send to solution app
+ * @apiName 批量设置设备
+ * @apiGroup 操作设备
+ * @apiDescription 批量设置设备
+ * @apiParam {String} taskname 任务名称 
+ * @apiParam {String} groupname 设备组的名称
+ * @apiParam {String} funcid 设备中解决方案app中制定的方法ID
+ * @apiParam {String} appname 设备中解决方案APP的包名
+ * @apiParam {String} value 发送给设备中解决方案APP的数据
  * @apiSuccess {String}  status  return CHANGED.
  * @apiSuccessExample {json} Success-Response:
                 { status: "CHANGED"}

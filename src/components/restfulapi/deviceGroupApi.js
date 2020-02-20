@@ -1,11 +1,11 @@
 import {apiGet, apiPut, apiDelete, apiPost} from "../../assets/js/baseApi";
 /**
- * @api {get} /api/groupmgr/all Get device group
+ * @api {get} /api/groupmgr/all 获得设备组
  * @apiVersion 0.1.0
- * @apiName getDeviceGroup
- * @apiGroup deviceGroup
- * @apiDescription Get device group
- * @apiSuccess {Object[]} data list of device group.
+ * @apiName 获得设备组
+ * @apiGroup 设备组管理
+ * @apiDescription 获得设备组
+ * @apiSuccess {Object[]} data 设备组的列表.
  */
     let getDeviceGroupApi = function() {
         return new Promise((resolve, reject) => {

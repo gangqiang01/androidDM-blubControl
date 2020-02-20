@@ -1,7 +1,7 @@
 {
-  "name": "AndroidDM solution app Api documentation",
+  "name": "AndroidDM二次开发的api文档",
   "version": "0.1.0",
-  "description": "The rest api Documentation for  androidDM secondary development",
-  "title": "Custom apiDoc browser title",
+  "description": "为AndroidDM二次开发提供的api文档",
+  "title": "Api 文档",
   "url" : "http://localhost"
 }
