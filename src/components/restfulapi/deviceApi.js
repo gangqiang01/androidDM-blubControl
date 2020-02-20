@@ -1,6 +1,13 @@
 import {apiGet, apiPut, apiDelete, apiPost} from "../../assets/js/baseApi";
 import {deviceInfo} from "../../assets/js/lwm2mMap"
-
+/**
+ * @api {get} /api/devicemgr Get all device
+ * @apiVersion 0.1.0
+ * @apiName getDevices
+ * @apiGroup device
+ * @apiDescription Get all devices
+ * @apiSuccess {Object[]} data list of device.
+ */
     let getDeviceApi = function(gname) {
         let url, obj = undefined;
         if(gname && gname != "All"){
@@ -19,6 +26,7 @@ import {deviceInfo} from "../../assets/js/lwm2mMap"
             })
         })
     }
+
     let getDeviceLikeNameApi = function(devname){
         let data = {
             name: devname
@@ -42,7 +50,15 @@ import {deviceInfo} from "../../assets/js/lwm2mMap"
             })
         })
     }
-
+/**
+ * @api {get} /api/devicemgr/getonlinedevicebygroup Get online devices in group
+ * @apiVersion 0.1.0
+ * @apiName getOnlineDevicesByGroupname
+ * @apiGroup device
+ * @apiDescription Get online devices by group name
+ * @apiParam {String} gname group name
+ * @apiSuccess {Object[]} data list of device.
+ */
     let getOnlineDeviceByGroupApi = function(gname){
         let data = {
            gname

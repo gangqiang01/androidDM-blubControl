@@ -1,5 +1,12 @@
 import {apiGet, apiPut, apiDelete, apiPost} from "../../assets/js/baseApi";
-
+/**
+ * @api {get} /api/groupmgr/all Get device group
+ * @apiVersion 0.1.0
+ * @apiName getDeviceGroup
+ * @apiGroup deviceGroup
+ * @apiDescription Get device group
+ * @apiSuccess {Object[]} data list of device group.
+ */
     let getDeviceGroupApi = function() {
         return new Promise((resolve, reject) => {
             apiGet("/api/groupmgr/all").then((data) => {
