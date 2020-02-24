@@ -17,7 +17,10 @@ let getSolutionAppStatusApi = function(){
  * @apiGroup 操作历史
  * @apiDescription 获得设备的操作历史
  * @apiParam {String} type 设备中解决方案APP的包名
- * @apiSuccess {Object[]} data 操作历史的列表 .
+ * @apiSuccess {Object[]} data 操作历史的列表.
+ *  @apiSuccessExample {json} Success-Response:
+ *          HTTP/1.1 200 OK 
+ *          {Object[]} 
  */
 let getSolutionAppStatusByTypeApi = function(type){
     return new Promise((resolve, reject) => {
@@ -40,7 +43,10 @@ let getSolutionAppStatusByTypeApi = function(type){
  * @apiDescription get 获得指定设备的操作历史
  * @apiParam {String} endpoint 设备的ID
  * @apiParam {String} type 设备中解决方案APP的包名
- * @apiSuccess {Object[]} data 操作历史的列表 .
+ * @apiSuccess {Object[]} data 操作历史的列表.
+ *  @apiSuccessExample {json} Success-Response:
+ *          HTTP/1.1 200 OK 
+ *          {Object[]} 
  */
 let getSolutionAppStatusByTypeAndDevIdApi = function(endpoint, type){
     return new Promise((resolve, reject) => {
@@ -65,6 +71,9 @@ let getSolutionAppStatusByTypeAndDevIdApi = function(endpoint, type){
  * @apiParam {String} groupname 设备组名称
  * @apiParam {String} type 设备中解决方案APP的包名
  * @apiSuccess {Object[]} data 操作历史的列表 
+ * @apiSuccessExample {json} Success-Response:
+ *          HTTP/1.1 200 OK 
+ *          {Object[]} 
  */
 let getSolutionAppStatusByTypeAndGroupApi = function(groupname, type){
     return new Promise((resolve, reject) => {
@@ -92,6 +101,9 @@ let getSolutionAppStatusByTypeAndGroupApi = function(groupname, type){
  * @apiParam {Number} limit 一页显示的最大条数
  * @apiParam {String} status type: 操作历史的状态（running:0, fail:1 success:2）,example:[0,1]
  * @apiSuccess {Object[]} data 操作历史的列表 
+ * @apiSuccessExample {json} Success-Response: 
+ *          HTTP/1.1 200 OK
+ *          {count: 总条数，data: Object[]} 
  */
 let getSolutionAppStatusByPageAndStatusInGroupApi = function(groupname, type, currentpage, limit, status){
     return new Promise((resolve, reject) => {
@@ -120,7 +132,10 @@ let getSolutionAppStatusByPageAndStatusInGroupApi = function(groupname, type, cu
  * @apiParam {String} groupname 设备组名称
  * @apiParam {Number} currentpage 当前页
  * @apiParam {Number} limit 一页显示的最大条数
- * @apiSuccess {Object[]} data 操作历史的列表 
+ * @apiSuccess {Object} data 操作历史的列表
+ * @apiSuccessExample {json} Success-Response: 
+ *           HTTP/1.1 200 OK
+ *           {count: 总条数，data: Object[]} 
  */
 let getSolutionAppStatusByPageInGroupApi = function(groupname, type, currentpage, limit){
     return new Promise((resolve, reject) => {
@@ -289,6 +304,8 @@ let batchDeleteSolutionAppStatusHistoryApi = function(sasids){
  * @apiSuccess {Number}   running  指定任务中正在执行的操作的个数.
  * @apiSuccess {Number}   fail  指定任务中失败的操作的个数.
  * @apiSuccess {Number}   success  指定任务中成功的操作的个数.
+ * @apiSuccessExample {json} Success-Response:
+                { running: "",fail: "", success: ""}
  */
 let getSolutionAppStatusOverviewApi = function(taskname, type){
     let data={

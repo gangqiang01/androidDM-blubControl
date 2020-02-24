@@ -1,7 +1,7 @@
 {
   "name": "AndroidDM二次开发的api文档",
   "version": "0.1.0",
-  "description": "为AndroidDM二次开发提供的api文档",
-  "title": "Api 文档",
+  "description": "基于AndroidDM进行二次开发的api文档",
+  "title": "Api文档",
   "url" : "http://localhost"
 }

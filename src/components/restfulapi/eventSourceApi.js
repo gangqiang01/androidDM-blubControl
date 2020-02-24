@@ -2,14 +2,7 @@ import { getBackendServerUrlApi } from "../restfulapi/serverConfigApi"
 
 let eventSource = null, singleEventSource = null;
 
-/**
- * @api {get} /event 连接eventSource
- * @apiVersion 0.1.0
- * @apiName 连接eventSource
- * @apiGroup eventSource
- * @apiDescription 获的所有设备上传的数据
- * @apiSuccess {json} data 设备上传的数据.
- */
+
 let eventSourceConn = function(){
     return new Promise((resolve, reject) => {
         getBackendServerUrlApi().then((serverUrl) => {
@@ -54,7 +47,7 @@ let handleMsg = function(type, cb, mode){
  * @apiVersion 0.1.0
  * @apiName 连接eventSource
  * @apiGroup eventSource
- * @apiParam {String} ep endpoint id of device
+ * @apiParam {String} ep 设备ID,如果要获得所有设备上传的数据，可以取消该参数
  * @apiDescription 获的指定设备上传的数据
  * @apiSuccess {json} data 设备上传的数据.
  */
