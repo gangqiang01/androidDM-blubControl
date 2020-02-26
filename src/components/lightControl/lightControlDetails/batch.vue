@@ -1,14 +1,14 @@
 <template>
     <div  v-show="!isSingleMode" class="bulbStatusContent">
         <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane name="bulbControl">
+            <el-tab-pane name="lightControl">
                 <span slot="label">
                     <i class="fa fa-sliders m-r-5" aria-hidden="true"></i>
-                    Bulb Control
+                    Light Control
                 </span>
                 <p class="bulb-title">
                     <i class="fa fa-lightbulb-o m-r-10" aria-hidden="true"></i>
-                    Bulb Status
+                    Light Color
                 
                 </p>
                 <div class="bulb-status">
@@ -22,7 +22,7 @@
                                     </path>
                                 </svg>
                                 
-                                <p class="info-box-icon-title">Bulb1</p>
+                                <p class="info-box-icon-title">Light1</p>
                             </div>
                             
                         </div>   
@@ -38,7 +38,7 @@
                                     </path>
                                 </svg>
                                 
-                                <p class="info-box-icon-title">Bulb2</p>
+                                <p class="info-box-icon-title">Light2</p>
                             </div>
                             
                         </div>   
@@ -54,7 +54,7 @@
                                     </path>
                                 </svg>
                                 
-                                <p class="info-box-icon-title">Bulb3</p>
+                                <p class="info-box-icon-title">Light3</p>
                             </div>
                             
                         </div>   
@@ -69,7 +69,7 @@
                                     </path>
                                 </svg>
                                 
-                                <p class="info-box-icon-title">Bulb4</p>
+                                <p class="info-box-icon-title">Light4</p>
                             </div>
                             
                         </div>   
@@ -84,7 +84,7 @@
                                     </path>
                                 </svg>
                                 
-                                <p class="info-box-icon-title">Bulb5</p>
+                                <p class="info-box-icon-title">Light5</p>
                             </div>
                             
                         </div>   
@@ -99,7 +99,7 @@
                                     </path>
                                 </svg>
                                 
-                                <p class="info-box-icon-title">Bulb6</p>
+                                <p class="info-box-icon-title">Light6</p>
                             </div>
                             
                         </div>   
@@ -113,7 +113,7 @@
                 
                 <p class="bulb-title">
                     <i class="fa fa-hand-o-up m-r-10" aria-hidden="true"></i>
-                    Set Bulb Color
+                    Change Light Color
                 </p>
                 <div class="blub-color m-b-20">
                     <el-radio-group v-model="bulbColor" @change = "setBulbColor">
@@ -132,7 +132,7 @@
                     </el-radio-group>
                 </div>
                 <!-- <div class="blub-color" >
-                    <el-select v-model="bulbColor" placeholder="Please set bult color" @change = "setBulbColor" size="small" style="width: 210px">
+                    <el-select v-model="bulbColor" placeholder="Please set Light color" @change = "setBulbColor" size="small" style="width: 210px">
                         <el-option
                         v-for="item in colorData"
                         :key="item.name"
@@ -145,7 +145,7 @@
             <el-tab-pane name="operationStatusHistory">
                 <span slot="label">
                     <i class="fa fa-history m-r-5" aria-hidden="true"></i>
-                    Bulb Color History
+                    Light Color History
                 </span>
                 <operation-history
                 :statusType="pkgname"
@@ -323,7 +323,7 @@
 
     };
     export default{
-        name: 'batchBulbControl',
+        name: 'batchlightControl',
         data(){
            let validateTaskname = (rule,value,callback)=>{
                 let reg=new RegExp(/^(?![._-])[a-zA-Z0-9\.\-_]{3,12}$/);
@@ -335,7 +335,7 @@
 
             return {
                 dialogTasknameVisible: false,
-                activeName: "bulbControl",
+                activeName: "lightControl",
                 //solution app info
                 getTarget: "/40007/0/27600",
                 setTarget: "/40007/0/27601",

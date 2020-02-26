@@ -159,7 +159,8 @@ const appControl = {
     removeWhitelist: '/40004/0/27312',
     preInstallApp: '/40004/0/27313',
     setKiosk: "/40004/0/27314",
-    cancelKiosk: "/40004/0/27315"
+    cancelKiosk: "/40004/0/27315",
+    isRunning: '/40004/0/27316'
 }
 //remote control exec device
 const actionDevice= {
