@@ -53,7 +53,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/bulb_control/',
+    assetsPublicPath: '/light_control/',
 
     /**
      * Source Maps
