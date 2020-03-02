@@ -25,7 +25,13 @@ let route = [
         name: 'main',
         component: main,
         children: childRoute,
-        redirect:'/main/lightControl'    
+        redirect:'/main/lightControl',
+        beforeEnter: (to, from, next) => {
+            console.log(to);
+            console.log(this.$route);
+            console.log(window.location)
+            next();
+        },   
     },
     {
         path: '*',
