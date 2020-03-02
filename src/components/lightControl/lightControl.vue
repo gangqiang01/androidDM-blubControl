@@ -13,7 +13,7 @@
             :isSingleMode="isSingleMode"
             :isDisabledOffDev="isDisabledOffDev">
             </select-device>
-            <div class="info" v-show="!isInstalled">
+            <div class="info" v-show="!isInstalled&& isSingleMode">
                 Light control app is not installed
             </div>
 
