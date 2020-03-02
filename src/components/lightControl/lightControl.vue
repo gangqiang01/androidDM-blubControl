@@ -13,11 +13,11 @@
             :isSingleMode="isSingleMode"
             :isDisabledOffDev="isDisabledOffDev">
             </select-device>
-            <div class="info" v-show="!isInstalled&& isSingleMode">
+            <div class="info" v-show="!isInstalled&& isSingleMode&& defIsShow">
                 Light control app is not installed
             </div>
 
-            <div class="switchApp" v-show="isSingleMode&& isInstalled">
+            <div class="switchApp" v-show="isSingleMode&& isInstalled&& defIsShow">
                
                 <span>
                     Light Control App({{versionName}}):
@@ -115,7 +115,8 @@
                 isRunning: false,
                 pkgname: "com.advantech.lightingcontrol",
                 versionName: "",
-                isInstalled: false
+                isInstalled: false,
+                defIsShow: false
             }
         },
         components:{
@@ -139,6 +140,8 @@
                 this.selectedAgentId = "";
                 this.groupname = "";
                 this.selectedAgentsData = [];
+                this.defIsShow = false;
+                this.isInstalled= false;
             },
 
             changeMode(val){
@@ -203,6 +206,7 @@
         watch: {
             selectedAgentId(val){
                 if(val){
+                    this.defIsShow = true;
                     this.getSolutionAppIsRunning();
                 }
             }
