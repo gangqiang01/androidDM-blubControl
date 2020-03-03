@@ -1,5 +1,6 @@
 import swal from 'sweetalert'
 import router from '../../router'
+import {singleEventSourceClose, eventSourceClose} from "../../components/restfulapi/eventSourceApi"
 
 const commonFn = {
     //refresh page
@@ -126,10 +127,8 @@ const commonFn = {
             return false;
         }
     },
-    timer: null,
-    etimer: null,
-    mtimer: null,
     
+    timer: null,
 
     removeLetter(str) {
         let i=0
@@ -147,20 +146,12 @@ const commonFn = {
         return str.replace(/^\s+|\s+$/g,"");
     },
 
-    //getUrlParams  a.html?a=a&b=b
-
-    getUrlParams(){
-        let params = new Object();
-        if(window.location.href.indexOf("?")> -1){
-            let hashArray = window.location.href.slice(window.location.href.indexOf("?")+1).split("&");
-            for(var i=0; i<hashArray.length; i++){
-                let hash = hashArray[i].split("=");
-                params[hash[0]] = _g.trim(hash[1]);    
-            }
-        }
-        return params;
-
-    }
+    doBeforeLoginout(){
+        cookie.setCookie("token",'',0)
+        window.clearInterval(_g.timer);
+        singleEventSourceClose();
+        eventSourceClose();
+    },
     
 }
 

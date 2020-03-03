@@ -20,7 +20,7 @@ axios.interceptors.request.use((config) => {
         }else{
             config.timeout = 1000*10;
         }
-        config.headers.accesstoken = window.sessionStorage.getItem("androidDM_tn");
+        config.headers.accesstoken = cookie.getCookie("lightControlToken");
         config.cancelToken = new axios.CancelToken((cancel) => {
             cancelArr.push({cancel});
         })

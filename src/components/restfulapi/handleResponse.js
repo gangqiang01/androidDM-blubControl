@@ -25,8 +25,11 @@ let handleError = function(res) {
         
             swal("","Login expired","error").then((val) =>{
                 if(val){
-                    let url = protocol+ ip+":"+ port;
-                    window.location.href = url;
+                    _g.doBeforeLoginout();
+                    router.replace({
+                        path: '/',
+                        query: {redirect: router.currentRoute.fullPath}
+                    })
                 }
             });
             

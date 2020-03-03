@@ -1,5 +1,6 @@
 
 import lightControl from "../components/lightControl/lightControl"
+import login from "../components/account/login"
 
 import main from '@/components/home'
 
@@ -12,17 +13,6 @@ let childRoute = [
         meta: {
             menuname: "lightControl"
         },
-        beforeEnter: (to, from, next) => {
-            let transportData = _g.getUrlParams();
-            let token = transportData.tn;
-            if(token){
-                window.sessionStorage.setItem("androidDM_tn", token);
-                let url = window.location.href.slice(0, window.location.href.indexOf("?"));
-                window.location.href = url;
-            }
-           
-            next();
-        },
     },
     {
         path: '*',
@@ -30,17 +20,33 @@ let childRoute = [
     }
 ]
 let route = [
-
     {
         path: '/',
+        component: login,
+        name: 'login',
+        beforeEnter: (to, from, next) => {
+            _g.doBeforeLoginout();
+            next();
+        }
+    },
+    {
+        path: '/main',
         name: 'main',
         component: main,
+        beforeEnter: (to, from, next) => {
+            if(cookie.checkCookie("androidLinkToken")){
+                next()
+            }else{
+                _g.doBeforeLoginout();
+                next("/")
+            }
+        },
         children: childRoute,
-        redirect:'/main/lightControl',   
+        redirect:'/main/lightControl'    
     },
     {
         path: '*',
-        redirect:'/main/lightControl'
+        redirect:'/'
     }
     
 ]

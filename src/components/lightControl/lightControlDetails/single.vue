@@ -187,8 +187,6 @@
                     setLedColor: "set_led_color",
                 },
 
-                timer: null,
-
                 //icon off color
                 bulbIconColor0: defaultColor,
                 bulbIconColor1: defaultColor,
