@@ -1,5 +1,6 @@
 import swal from 'sweetalert'
 import router from '../../router'
+import {ip, port, protocol} from "../../assets/js/constant"
 
 let handleResponse = function(res, cb, isLoading = true){
     if(isLoading){
@@ -24,11 +25,8 @@ let handleError = function(res) {
         
             swal("","Login expired","error").then((val) =>{
                 if(val){
-                    _g.doBeforeLoginout();
-                    router.replace({
-                        path: '/',
-                        query: {redirect: router.currentRoute.fullPath}
-                    })
+                    let url = protocol+ ip+":"+ port;
+                    window.location.href = url;
                 }
             });
             

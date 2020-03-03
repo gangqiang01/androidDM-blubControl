@@ -11,7 +11,18 @@ let childRoute = [
         name: 'lightControl',
         meta: {
             menuname: "lightControl"
-        }
+        },
+        beforeEnter: (to, from, next) => {
+            let transportData = _g.getUrlParams();
+            let token = transportData.tn;
+            if(token){
+                window.sessionStorage.setItem("androidDM_tn", token);
+                let url = window.location.href.slice(0, window.location.href.indexOf("?"));
+                window.location.href = url;
+            }
+           
+            next();
+        },
     },
     {
         path: '*',
@@ -25,13 +36,7 @@ let route = [
         name: 'main',
         component: main,
         children: childRoute,
-        redirect:'/main/lightControl',
-        beforeEnter: (to, from, next) => {
-            console.log(to);
-            console.log(this.$route);
-            console.log(window.location)
-            next();
-        },   
+        redirect:'/main/lightControl',   
     },
     {
         path: '*',

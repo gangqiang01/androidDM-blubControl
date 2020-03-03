@@ -145,6 +145,21 @@ const commonFn = {
     // trim string
     trim(str){
         return str.replace(/^\s+|\s+$/g,"");
+    },
+
+    //getUrlParams  a.html?a=a&b=b
+
+    getUrlParams(){
+        let params = new Object();
+        if(window.location.href.indexOf("?")> -1){
+            let hashArray = window.location.href.slice(window.location.href.indexOf("?")+1).split("&");
+            for(var i=0; i<hashArray.length; i++){
+                let hash = hashArray[i].split("=");
+                params[hash[0]] = _g.trim(hash[1]);    
+            }
+        }
+        return params;
+
     }
     
 }
