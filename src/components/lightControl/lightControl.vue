@@ -52,7 +52,7 @@
     .modeSwitch{
         position: absolute;
         top: 20px;
-        right: 3px;
+        right: 50px;
     }
 
     .switchApp{
