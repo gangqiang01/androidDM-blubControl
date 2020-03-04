@@ -34,7 +34,7 @@ let route = [
         name: 'main',
         component: main,
         beforeEnter: (to, from, next) => {
-            if(cookie.checkCookie("androidLinkToken")){
+            if(cookie.checkCookie("lightControlToken")){
                 next()
             }else{
                 _g.doBeforeLoginout();

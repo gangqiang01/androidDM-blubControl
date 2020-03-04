@@ -147,8 +147,9 @@ const commonFn = {
     },
 
     doBeforeLoginout(){
-        cookie.setCookie("token",'',0)
+        cookie.setCookie("lightControlToken",'',0)
         window.clearInterval(_g.timer);
+        _g.timer = null;
         singleEventSourceClose();
         eventSourceClose();
     },
