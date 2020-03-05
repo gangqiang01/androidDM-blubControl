@@ -1,21 +1,21 @@
 
-import bulbControl from "../components/bulbControl/bulbControl"
+import lightControl from "../components/lightControl/lightControl"
 
 import main from '@/components/home'
 
 let childRoute = [
 
     {
-        path: 'bulbControl',
-        component: bulbControl,
-        name: 'bulbControl',
+        path: 'lightControl',
+        component: lightControl,
+        name: 'lightControl',
         meta: {
-            menuname: "bulbControl"
+            menuname: "lightControl"
         }
     },
     {
         path: '*',
-        redirect:'bulbControl'
+        redirect:'lightControl'
     }
 ]
 let route = [
@@ -25,11 +25,17 @@ let route = [
         name: 'main',
         component: main,
         children: childRoute,
-        redirect:'/main/bulbControl'    
+        redirect:'/main/lightControl',
+        beforeEnter: (to, from, next) => {
+            console.log(to);
+            console.log(this.$route);
+            console.log(window.location)
+            next();
+        },   
     },
     {
         path: '*',
-        redirect:'/main/bulbControl'
+        redirect:'/main/lightControl'
     }
     
 ]

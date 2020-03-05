@@ -5,7 +5,7 @@
                 <img src="@/assets/imgs/bulb.png" alt="" style="margin-top:-10px;">
             </li>
             <li>
-                Bulb Control
+                Light Control
             </li>
         </ul>
     </el-header>

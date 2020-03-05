@@ -2,7 +2,7 @@
     <div  v-show="isSingleMode">
         <p class="bulb-title">
             <i class="fa fa-lightbulb-o m-r-10" aria-hidden="true"></i>
-            Bulb Status
+            Light Color
            
         </p>
         <div class="bulb-status">
@@ -15,7 +15,7 @@
                             </path>
                         </svg>
                         
-                        <p class="info-box-icon-title">Bulb1</p>
+                        <p class="info-box-icon-title">Light1</p>
                     </div>
                     
                 </div>   
@@ -30,7 +30,7 @@
                             </path>
                         </svg>
                         
-                        <p class="info-box-icon-title">Bulb2</p>
+                        <p class="info-box-icon-title">Light2</p>
                     </div>
                     
                 </div>   
@@ -45,7 +45,7 @@
                             </path>
                         </svg>
                         
-                        <p class="info-box-icon-title">Bulb3</p>
+                        <p class="info-box-icon-title">Light3</p>
                     </div>
                     
                 </div>   
@@ -59,7 +59,7 @@
                             </path>
                         </svg>
                         
-                        <p class="info-box-icon-title">Bulb4</p>
+                        <p class="info-box-icon-title">Light4</p>
                     </div>
                     
                 </div>   
@@ -73,7 +73,7 @@
                             </path>
                         </svg>
                         
-                        <p class="info-box-icon-title">Bulb5</p>
+                        <p class="info-box-icon-title">Light5</p>
                     </div>
                     
                 </div>   
@@ -87,7 +87,7 @@
                             </path>
                         </svg>
                         
-                        <p class="info-box-icon-title">Bulb6</p>
+                        <p class="info-box-icon-title">Light6</p>
                     </div>
                     
                 </div>   
@@ -101,7 +101,7 @@
         
         <p class="bulb-title">
             <i class="fa fa-hand-o-up m-r-10" aria-hidden="true"></i>
-            Set Bulb Color
+            Change Light Color
         </p>
         <div class="blub-color m-b-20" v-loading="changeLoading">
             <el-radio-group v-model="bulbColor" @change = "setBulbColor">
@@ -121,7 +121,7 @@
             </el-radio-group>
         </div>
         <!-- <div class="blub-color" >
-            <el-select v-model="bulbColor" placeholder="Please set bult color" @change = "setBulbColor" size="small" style="width: 210px">
+            <el-select v-model="bulbColor" placeholder="Please set Light color" @change = "setBulbColor" size="small" style="width: 210px">
                 <el-option
                 v-for="item in colorData"
                 :key="item.name"
@@ -145,6 +145,12 @@
         singleEventSourceClose,
         eventSourceClose
         } from "../../restfulapi/eventSourceApi"
+    import {appControl} from "../../../assets/js/lwm2mMap"
+    import {
+        getDeviceStatus,
+        setDeviceStatus,
+        execDeviceStatus,
+    } from "../../restfulapi/deviceStatusApi"
     let intToColor = (value)=> {
         let int = parseInt(value);
         switch(int){
@@ -166,10 +172,9 @@
     let defaultColor = "#aaa"
 
     export default{
-        name: 'singleBulbControl',
+        name: 'singlelightControl',
         data(){
             return {
-                activeName: "bulbControl",
                 //solution app info
                 getTarget: "/40007/0/27600",
                 setTarget: "/40007/0/27601",
@@ -224,11 +229,9 @@
             isOffline: {
                 type: Boolean,
                 default: false
-            }
+            },
         },
-        components: {
- 	        
-        },
+
         methods:{
             initData(){
                 this.bulbIconColor0 = defaultColor;
@@ -362,7 +365,53 @@
             },
             closeEventSourceConn(){
                 singleEventSourceClose();
-            }
+            },
+
+
+            startSolutionApp(){
+                if(this.selectedAgentId == ""){
+                    console.error("selectAgentId is empty");
+                    return;
+                }
+                this.contentLoading = true;
+                setDeviceStatus(this.selectedAgentId, appControl.startApp, this.pkgname).then((obj) => {
+                    this.contentLoading = false;
+                    handleResponse(obj, (res) => {
+                        if(res.status === "CHANGED"){
+                            this.$swal("", "Success", "success").then(() => {
+                                this.refreshStatus();
+                            })
+                            
+                        }else{
+                            this.$emit("isRunSuccess", false)
+                            _g.handleError(res);
+                        }
+                    })
+                })
+            },
+
+            stopSolutionApp(){
+                if(this.selectedAgentId == ""){
+                    console.error("selectAgentId is empty");
+                    return;
+                }
+                this.contentLoading = true;
+                setDeviceStatus(this.selectedAgentId, appControl.stopApp, this.pkgname).then((obj) => {
+                    this.contentLoading = false;
+                    handleResponse(obj, (res) => {
+                        if(res.status === "CHANGED"){
+                            this.$swal("", "Success", "success").then(() => {
+                                this.initData();
+                            })
+                        }else{
+                            this.$emit("isRunSuccess", true)
+                            _g.handleError(res);
+                        }
+                        
+                    })
+                })
+            },
+
         },
 
         watch: {
@@ -377,7 +426,6 @@
                     this.getDeviceVideoStatus(this.funcIds.getLedStatus);
                     this.closeEventSourceConn();
                     if(val){
-                        
                         this.sgEventSourceConn(val);
                     }
                 }

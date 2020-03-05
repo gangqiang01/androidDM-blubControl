@@ -12,7 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/': {   
-            target: 'http://192.168.0.103:30010', 
+            // target: 'http://192.168.0.103:30010', 
+            target: 'http://172.21.73.22:8080',
             changeOrigin: true,  
             pathRewrite: { 
             '^/': '/' 
@@ -21,7 +22,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: '192.168.0.103', // can be overwritten by process.env.HOST
+    host: '192.168.213.128', // can be overwritten by process.env.HOST
     port: 8088, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
@@ -52,7 +53,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/power_control/',
+    assetsPublicPath: '/light_control/',
 
     /**
      * Source Maps

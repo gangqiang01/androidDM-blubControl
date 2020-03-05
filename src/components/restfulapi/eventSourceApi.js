@@ -1,26 +1,28 @@
 import { getBackendServerUrlApi } from "../restfulapi/serverConfigApi"
+import {ip, port, protocol} from "../../assets/js/constant"
 
+let serverUrl = protocol+ ip+":"+ port;
 let eventSource = null, singleEventSource = null;
 
 
 let eventSourceConn = function(){
     return new Promise((resolve, reject) => {
-        getBackendServerUrlApi().then((serverUrl) => {
-            let ESServerUrl = serverUrl+"/event"
-            if(eventSource === null){
-                eventSource = new EventSource(ESServerUrl);
-                resolve(true);
-            }else{
-                resolve(false);
-            }
-            eventSource.onopen=function(){
-                console.log("eventSource open")
-            }
-            eventSource.onerror = function(){
-                eventSource = null;
-                console.error("eventSource Error")
-            }
-        })
+        
+        let ESServerUrl = serverUrl+"/event"
+        if(eventSource === null){
+            eventSource = new EventSource(ESServerUrl);
+            resolve(true);
+        }else{
+            resolve(false);
+        }
+        eventSource.onopen=function(){
+            console.log("eventSource open")
+        }
+        eventSource.onerror = function(){
+            eventSource = null;
+            console.error("eventSource Error")
+        }
+    
         
     })
     
@@ -53,33 +55,33 @@ let handleMsg = function(type, cb, mode){
  */
 let singleEventSourceConn = function(agentId){
     return new Promise((resolve, reject) => {
-        getBackendServerUrlApi().then((serverUrl) => {
-            let ESServerUrl = serverUrl+"/event"
-            if(agentId != undefined){
-                let singleServerUrl = ESServerUrl+"?ep="+agentId;
-                
-                if(singleEventSource != null){
-                    let preAgentId =  singleEventSource.url.split("=")[1];
-                    if(preAgentId === agentId){
-                        resolve(false);
-                    }
-                }
-                
-                singleEventSource = new EventSource(singleServerUrl); 
-                resolve(true); 
-            }else{
-                resolve(false);
-                console.error("paramater is undefined")
-            }
         
-            singleEventSource.onopen=function(){
-                console.log("slingleEventSource open")
+        let ESServerUrl = serverUrl+"/event"
+        if(agentId != undefined){
+            let singleServerUrl = ESServerUrl+"?ep="+agentId;
+            
+            if(singleEventSource != null){
+                let preAgentId =  singleEventSource.url.split("=")[1];
+                if(preAgentId === agentId){
+                    resolve(false);
+                }
             }
-            singleEventSource.onerror = function(){
-                eventSource = null;
-                console.error("slingleEventSource Error")
-            }
-        })
+            
+            singleEventSource = new EventSource(singleServerUrl); 
+            resolve(true); 
+        }else{
+            resolve(false);
+            console.error("paramater is undefined")
+        }
+    
+        singleEventSource.onopen=function(){
+            console.log("slingleEventSource open")
+        }
+        singleEventSource.onerror = function(){
+            eventSource = null;
+            console.error("slingleEventSource Error")
+        }
+        
     })
 }
 
