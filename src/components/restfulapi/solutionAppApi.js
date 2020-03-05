@@ -4,6 +4,7 @@ import {apiGet, apiPut, apiDelete, apiPost} from '../../assets/js/baseApi'
  * @apiVersion 0.1.0
  * @apiName 获得设备的信息
  * @apiGroup 操作设备
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 获得设备的信息
  * @apiParam {String} endpoint 设备的ID
  * @apiParam {String} funcid 设备中解决方案app中制定的方法ID
@@ -29,6 +30,7 @@ let getSolutionAppValueApi = function(endpoint, sensorId, param){
  * @apiVersion 0.1.0
  * @apiName 设置设备
  * @apiGroup 操作设备
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 设置设备
  * @apiParam {String} endpoint 设备的ID
  * @apiParam {String} id resource id of lwm2m value example 5
@@ -62,6 +64,7 @@ let setSolutionAppValueApi = function(endpoint, sensorId, val=""){
  * @apiVersion 0.1.0
  * @apiName 重新设置设备
  * @apiGroup 操作设备
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 重新设置设备
  * @apiParam {String} funcid 设备中解决方案app中制定的方法ID
  * @apiParam {String} taskname 任务名称 
@@ -88,6 +91,7 @@ let reSetSolutionAppValue = function(sensorId, dpData){
  * @apiVersion 0.1.0
  * @apiName 批量设置设备
  * @apiGroup 操作设备
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 批量设置设备
  * @apiParam {String} taskname 任务名称 
  * @apiParam {String} groupname 设备组的名称

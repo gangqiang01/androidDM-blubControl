@@ -15,6 +15,7 @@ let getSolutionAppStatusApi = function(){
  * @apiVersion 0.1.0
  * @apiName 获得设备的操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 获得设备的操作历史
  * @apiParam {String} type 设备中解决方案APP的包名
  * @apiSuccess {Object[]} data 操作历史的列表.
@@ -40,6 +41,7 @@ let getSolutionAppStatusByTypeApi = function(type){
  * @apiVersion 0.1.0
  * @apiName 获得指定设备的操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription get 获得指定设备的操作历史
  * @apiParam {String} endpoint 设备的ID
  * @apiParam {String} type 设备中解决方案APP的包名
@@ -67,6 +69,7 @@ let getSolutionAppStatusByTypeAndDevIdApi = function(endpoint, type){
  * @apiVersion 0.1.0
  * @apiName 获得设备组中所有设备的操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 获得设备组中所有设备的操作历史
  * @apiParam {String} groupname 设备组名称
  * @apiParam {String} type 设备中解决方案APP的包名
@@ -94,6 +97,7 @@ let getSolutionAppStatusByTypeAndGroupApi = function(groupname, type){
  * @apiVersion 0.1.0
  * @apiName 获得设备组中所有设备指定状态的操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 获得设备组中所有设备指定状态的操作历史
  * @apiParam {String} type 设备中解决方案APP的包名
  * @apiParam {String} groupname 设备组名称
@@ -127,6 +131,7 @@ let getSolutionAppStatusByPageAndStatusInGroupApi = function(groupname, type, cu
  * @apiVersion 0.1.0
  * @apiName 获得设备组中所有设备的操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 获得设备组中所有设备的操作历史
  * @apiParam {String} type 设备中解决方案APP的包名
  * @apiParam {String} groupname 设备组名称
@@ -158,6 +163,7 @@ let getSolutionAppStatusByPageInGroupApi = function(groupname, type, currentpage
  * @apiVersion 0.1.0
  * @apiName 删除指定的操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 删除指定的操作历史
  * @apiParam {Number} sasid 操作历史的ID
  * @apiSuccess {String}  status  return CHANGED.
@@ -179,6 +185,7 @@ let deleteSolutionAppStatusHistoryApi = function(sasid){
  * @apiVersion 0.1.0
  * @apiName 删除所有操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 删除所有操作历史
  * @apiSuccess {String}  status  return CHANGED.
  * @apiSuccessExample {json} Success-Response:
@@ -199,6 +206,7 @@ let deleteSolutionAppStatusHistoryAllApi = function(){
  * @apiVersion 0.1.0
  * @apiName 删除所有操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 删除所有操作历史
  * @apiParam {String} type 设备中解决方案APP的包名
  * @apiSuccess {String}  status  return CHANGED.
@@ -220,6 +228,7 @@ let deleteSolutionAppStatusHistoryAllByTypeApi = function(type){
  * @apiVersion 0.1.0
  * @apiName 删除指定设备的操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 删除指定设备的操作历史
  * @apiParam {String} endpoint 设备的ID
  * @apiParam {String} type 设备中解决方案APP的包名
@@ -246,6 +255,7 @@ let deleteSolutionAppStatusHistoryAllByDevIDAndTypeApi = function(endpoint, type
  * @apiVersion 0.1.0
  * @apiName 删除设备组中所有设备的操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 删除设备组中所有设备的操作历史
  * @apiParam {String} groupname 设备组名称
  * @apiParam {String} type 设备中解决方案APP的包名
@@ -272,6 +282,7 @@ let deleteSolutionAppStatusHistoryAllByGroupAndTypeApi = function(groupname, typ
  * @apiVersion 0.1.0
  * @apiName 批量删除操作历史
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription  批量删除操作历史
  * @apiParam {String} sasids  JSON type: sasids 
  * @apiSuccess {String}  status  return CHANGED.
@@ -298,6 +309,7 @@ let batchDeleteSolutionAppStatusHistoryApi = function(sasids){
  * @apiVersion 0.1.0
  * @apiName 获得指定任务的操作历史的结果
  * @apiGroup 操作历史
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 获得指定任务的操作历史的结果
  * @apiParam {String} taskname 设备中解决方案APP的包名
  * @apiParam {String} type 设备中解决方案APP的包名

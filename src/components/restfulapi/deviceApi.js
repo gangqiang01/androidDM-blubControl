@@ -5,6 +5,7 @@ import {deviceInfo} from "../../assets/js/lwm2mMap"
  * @apiVersion 0.1.0
  * @apiName 获得设备
  * @apiGroup 设备管理
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 获得所有设备
  * @apiSuccess {Object[]} data 设备列表.
  */
@@ -55,6 +56,7 @@ import {deviceInfo} from "../../assets/js/lwm2mMap"
  * @apiVersion 0.1.0
  * @apiName 获得在线设备
  * @apiGroup 设备管理
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 获得设备组中的在线设备
  * @apiParam {String} gname 设备组名称
  * @apiSuccess {Object[]} data 设备列表.

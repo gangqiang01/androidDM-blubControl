@@ -4,6 +4,7 @@ import {apiGet, apiPut, apiDelete, apiPost} from "../../assets/js/baseApi";
  * @apiVersion 0.1.0
  * @apiName 获得设备组
  * @apiGroup 设备组管理
+ * @apiHeader {String} accesstoken 用户授权token
  * @apiDescription 获得设备组
  * @apiSuccess {Object[]} data 设备组的列表.
  */
