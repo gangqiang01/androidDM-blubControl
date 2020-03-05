@@ -1,5 +1,6 @@
 import swal from 'sweetalert'
 import router from '../../router'
+import {ip, port, protocol} from "../../assets/js/constant"
 
 let handleResponse = function(res, cb, isLoading = true){
     if(isLoading){

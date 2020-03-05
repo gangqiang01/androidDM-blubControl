@@ -56,6 +56,8 @@
     import {getDeviceApi} from '../components/restfulapi/deviceApi'
     import {getDeviceGroupApi} from '../components/restfulapi/deviceGroupApi'
     import handleResponse from '../components/restfulapi/handleResponse'
+
+    import {setSession, getSession, checkSession} from "../assets/js/storage"
     import {mapState} from 'vuex'
 
     export default{
@@ -88,7 +90,7 @@
                     handleResponse(data, (res) => {
                         if(Object.prototype.toString.call(res) === "[object Array]"){
                             if(res.length > 0){
-                                let defaultDeviceAgent = localStorage.getItem("selectedAgentId");
+                                let defaultDeviceAgent = getSession("selectedAgentId");
                                 let onlineDevices = [];
                                 let offlineDevices = [];
                                 res.forEach((val) => {
@@ -133,7 +135,7 @@
                 this.$emit("isOfflineDev", this.offlineDevices.indexOf(val)>-1)
 
                 if(val&& this.isDisabledOffDev){ 
-                    localStorage.setItem("selectedAgentId", val);
+                    setSession("selectedAgentId", val);
                 }
             },
             

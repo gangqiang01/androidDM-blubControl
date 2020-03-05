@@ -287,11 +287,12 @@ export default (function () {
                 case 1:
                     return "Yellow";
                 case 2:
-                    return "Red";
-                case 3:
-                    return "Blue";
-                case 4:
                     return "Green";
+                case 3:
+                    return "Red";
+                case 4:
+                    return "Blue";
+                
                 default:
                 return "";
             }

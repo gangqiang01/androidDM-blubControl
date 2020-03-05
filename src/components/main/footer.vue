@@ -1,5 +1,5 @@
 <template>
-<div class="text-center page_footer">
+<div class="text-center page_footer m-t-10">
     <p >
         © {{releaseDate}} Powered by {{power}}
     </p>

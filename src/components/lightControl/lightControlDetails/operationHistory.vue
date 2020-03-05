@@ -290,20 +290,20 @@ export default {
                 })
                 if(isFinish){
                     this.$emit("isFinished");
-                    window.clearInterval(_g.etimer);
-                    _g.etimer = null;
+                    window.clearInterval(_g.timer);
+                    _g.timer = null;
                 }
             }else{
-                window.clearInterval(_g.etimer);
-                _g.etimer = null;
+                window.clearInterval(_g.timer);
+                _g.timer = null;
             }
             
         },
 
         intervalGetSolutionAppStatusHistory(){
             this.getSolutionAppStatusHistoryByGroupname();
-            if(_g.etimer === null){
-                _g.etimer = window.setInterval(() => {
+            if(_g.timer === null){
+                _g.timer = window.setInterval(() => {
                     this.getSolutionAppStatusHistoryByGroupname();
                     this.isInterval = true;
                 },this.intervalTime)
@@ -392,9 +392,10 @@ export default {
     created(){
         this.$emit("getStatusCount")
     },
+    
     beforeDestroy() {
-         window.clearInterval(_g.etimer);
-        _g.etimer = null;
+         window.clearInterval(_g.timer);
+        _g.timer = null;
     },
 
     watch: {

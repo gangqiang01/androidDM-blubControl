@@ -1,5 +1,6 @@
 
 import lightControl from "../components/lightControl/lightControl"
+import login from "../components/account/login"
 
 import main from '@/components/home'
 
@@ -11,7 +12,7 @@ let childRoute = [
         name: 'lightControl',
         meta: {
             menuname: "lightControl"
-        }
+        },
     },
     {
         path: '*',
@@ -19,23 +20,33 @@ let childRoute = [
     }
 ]
 let route = [
-
     {
         path: '/',
+        component: login,
+        name: 'login',
+        beforeEnter: (to, from, next) => {
+            _g.doBeforeLoginout();
+            next();
+        }
+    },
+    {
+        path: '/main',
         name: 'main',
         component: main,
-        children: childRoute,
-        redirect:'/main/lightControl',
         beforeEnter: (to, from, next) => {
-            console.log(to);
-            console.log(this.$route);
-            console.log(window.location)
-            next();
-        },   
+            if(cookie.checkCookie("lightControlToken")){
+                next()
+            }else{
+                _g.doBeforeLoginout();
+                next("/")
+            }
+        },
+        children: childRoute,
+        redirect:'/main/lightControl'    
     },
     {
         path: '*',
-        redirect:'/main/lightControl'
+        redirect:'/'
     }
     
 ]

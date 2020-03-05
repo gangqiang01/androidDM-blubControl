@@ -187,8 +187,6 @@
                     setLedColor: "set_led_color",
                 },
 
-                timer: null,
-
                 //icon off color
                 bulbIconColor0: defaultColor,
                 bulbIconColor1: defaultColor,
@@ -240,7 +238,8 @@
                 this.bulbIconColor3 = defaultColor
                 this.bulbIconColor4 = defaultColor
                 this.bulbIconColor5 = defaultColor
-                this.bulbColor= 1
+                this.bulbColor= 1;
+                this.beforeBulbColor=1;
             },
 
 
